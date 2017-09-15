@@ -16,11 +16,11 @@ export class AppComponent {
     constructor(public modalService: SuiModalService) {
     }
 
-    public open(dynamicContent: string = "Example") {
+    public open() {
         const config = new TemplateModalConfig<IContext, string, string>(this.modalTemplate);
 
         config.closeResult = "closed!";
-        config.context = {data: dynamicContent};
+        config.context = {data: 'hi'};
 
         this.modalService
             .open(config)
@@ -35,8 +35,9 @@ export class AppComponent {
 
     public globalConfig: TemplateModalConfig<IContext, string, string>;
 
-    public open2(dynamicContent: string = "Example") {
+    public open2() {
         this.globalConfig = new TemplateModalConfig<IContext, string, string>(this.modalTemplate);
+        this.globalConfig.context = {data: 'hi'};
         this.modalService
             .open(this.globalConfig)
             .onApprove(result => {
